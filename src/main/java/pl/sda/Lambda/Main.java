@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -26,9 +27,9 @@ public class Main {
 
         List<Movie> movies = Arrays.asList(
                 new Movie("Tytul", "Jan", LocalDate.of(2012, 02,12),
-                        60, Arrays.asList("Michal", "Maciek")),
-                new Movie("Tytul2", "Jan", LocalDate.of(2012, 02,12),
-                        20, Arrays.asList("Michal", "Maciek"))
+                        60, Arrays.asList("Jan", "Maciek")),
+                new Movie("Sensacja", "Kamil", LocalDate.of(2018, 02,12),
+                        33, Arrays.asList("Jan", "Maciek"))
         );
 
 
@@ -63,6 +64,24 @@ public class Main {
 
         System.out.println("******");
         titles2.forEach(System.out::println);
+
+        List<Movie> moviesWithJan = movies
+                .stream()
+                .filter(f -> f.getActorList().contains("Jan"))
+                .collect(Collectors.toList());
+
+        moviesWithJan.forEach(System.out::println);
+
+        List<String> moviesWithJanUpperCase = movies
+                .stream()
+                .filter(f -> f.getActorList().contains("Jan"))
+                .map(f -> f.getTitle())
+                .map(f -> f.toUpperCase())
+                .collect(Collectors.toList());
+
+        moviesWithJanUpperCase.forEach(System.out::println);
+
+
 
     }
 }

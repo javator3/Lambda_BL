@@ -57,4 +57,15 @@ public class Movie {
     public void setActorList(List<String> actorList) {
         this.actorList = actorList;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", director='" + director + '\'' +
+                ", localDate=" + localDate +
+                ", price=" + price +
+                ", actorList=" + actorList +
+                '}';
+    }
 }
